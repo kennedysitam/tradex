@@ -5,7 +5,8 @@
 #property copyright "TradeX"
 #property version   "1.00"
 #property strict
-
+#include "../Include/Trading/PositionManager.mqh"
+code mt5\Include\Trading\RiskManager.mqh
 #include "../Include/Trading/OrderManager.mqh"
 #include "../Include/Core/Config.mqh"
 #include "../Include/Core/Logger.mqh"
