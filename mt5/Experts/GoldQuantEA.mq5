@@ -6,6 +6,7 @@
 #property version   "1.00"
 #property strict
 
+#include "../Include/Trading/OrderManager.mqh"
 #include "../Include/Core/Config.mqh"
 #include "../Include/Core/Logger.mqh"
 #include "../Include/Core/Utilities.mqh"
