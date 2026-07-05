@@ -1,25 +1,32 @@
-#ifndef UTILITIES_MQH
-#define UTILITIES_MQH
+//+------------------------------------------------------------------+
+//| TradeX Utilities Module                                          |
+//| Build 001.11                                                     |
+//+------------------------------------------------------------------+
+#ifndef __UTILITIES_MQH__
+#define __UTILITIES_MQH__
 
-//==================================================
-// TradeX Utilities Module
-// Build 001.4
-//==================================================
+//---------------------------------------------------------
+// Normalize a price to the current symbol digits
+//---------------------------------------------------------
+double NormalizePrice(double price)
+{
+   return NormalizeDouble(price, _Digits);
+}
 
-//--------------------------------------------------
-// Round a number to the specified decimal places
-//--------------------------------------------------
+//---------------------------------------------------------
+// Normalize lot size
+//---------------------------------------------------------
+double NormalizeLot(double lots)
+{
+   return NormalizeDouble(lots, 2);
+}
+
+//---------------------------------------------------------
+// Round to a specified number of digits
+//---------------------------------------------------------
 double RoundToDigits(double value, int digits)
 {
    return NormalizeDouble(value, digits);
 }
 
-//--------------------------------------------------
-// Check if a value is within a valid range
-//--------------------------------------------------
-bool IsValueInRange(double value, double min, double max)
-{
-   return (value >= min && value <= max);
-}
-
-#endif // UTILITIES_MQH
+#endif

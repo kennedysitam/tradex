@@ -1,32 +1,39 @@
-#ifndef CONFIG_MQH
-#define CONFIG_MQH
+//+------------------------------------------------------------------+
+//| TradeX Configuration Module                                      |
+//| Build 001.10                                                     |
+//+------------------------------------------------------------------+
+#ifndef __CONFIG_MQH__
+#define __CONFIG_MQH__
 
-//==================================================
-// TradeX Configuration Module
-// Build 001.2
-//==================================================
+//---------------------------------------------------------
+// General Settings
+//---------------------------------------------------------
 
-//--------------------------------------------------
-// Expert Advisor Information
-//--------------------------------------------------
-#define EA_NAME        "TradeX"
-#define EA_VERSION     "0.1.0"
+input bool EnableTrading       = true;
+input bool EnableLogging       = true;
+input bool EnableNotifications = true;
 
-//--------------------------------------------------
-// Default Trading Settings
-//--------------------------------------------------
-#define DEFAULT_SYMBOL      _Symbol
-#define DEFAULT_TIMEFRAME   PERIOD_M15
-
-//--------------------------------------------------
+//---------------------------------------------------------
 // Risk Management
-//--------------------------------------------------
-#define DEFAULT_RISK_PERCENT 1.0
-#define MAX_OPEN_TRADES      5
+//---------------------------------------------------------
 
-//--------------------------------------------------
-// Debug Settings
-//--------------------------------------------------
-#define DEBUG_MODE true
+input double RiskPercent       = 1.0;
+input double MaxRiskPercent    = 5.0;
 
-#endif // CONFIG_MQH
+//---------------------------------------------------------
+// Trade Settings
+//---------------------------------------------------------
+
+input int    MagicNumber       = 10001;
+input int    MaxOpenTrades     = 1;
+input double Slippage          = 5;
+
+//---------------------------------------------------------
+// Session Settings
+//---------------------------------------------------------
+
+input bool TradeLondonSession  = true;
+input bool TradeNewYorkSession = true;
+input bool TradeAsianSession   = false;
+
+#endif
