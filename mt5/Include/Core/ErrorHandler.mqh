@@ -14,7 +14,7 @@ void HandleLastError(string source)
 {
    int error = GetLastError();
 
-   if(error != ERR_NO_ERROR)
+   if(error != 0)
    {
       LogError(source + " | Error Code: " + IntegerToString(error));
       ResetLastError();

@@ -1,27 +1,31 @@
 //+------------------------------------------------------------------+
 //| TradeX Trade Validator                                           |
-//| Build 002.4                                                      |
+//| Build 003.1                                                      |
 //+------------------------------------------------------------------+
 #ifndef __TRADEVALIDATOR_MQH__
 #define __TRADEVALIDATOR_MQH__
 
+#include "../Core/Logger.mqh"
 #include "../Core/Config.mqh"
-#include "RiskManager.mqh"
-#include "PositionManager.mqh"
 
-//---------------------------------------------------------
-// Validate whether trading is allowed
-//---------------------------------------------------------
+//--------------------------------------------------
+// Check whether trading is allowed
+//--------------------------------------------------
 bool CanTrade()
 {
-   if(!EnableTrading)
+   // Terminal AutoTrading enabled
+   if(!TerminalInfoInteger(TERMINAL_TRADE_ALLOWED))
+   {
+      LogError("AutoTrading is disabled.");
       return false;
+   }
 
-   if(!IsRiskValid())
+   // EA is allowed to trade
+   if(!MQLInfoInteger(MQL_TRADE_ALLOWED))
+   {
+      LogError("EA trading is not allowed.");
       return false;
-
-   if(GetOpenPositionCount() >= MaxOpenTrades)
-      return false;
+   }
 
    return true;
 }
