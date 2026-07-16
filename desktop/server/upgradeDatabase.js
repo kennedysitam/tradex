@@ -3,40 +3,45 @@ const db = require("./database/database");
 db.serialize(() => {
 
     db.run(`
-        CREATE TABLE IF NOT EXISTS market_features (
+        CREATE TABLE IF NOT EXISTS trade_journal (
 
             id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-            candle_id INTEGER UNIQUE,
+            strategy TEXT,
 
-            body REAL,
-            upper_wick REAL,
-            lower_wick REAL,
-            range REAL,
+            symbol TEXT,
 
-            bullish INTEGER,
+            timeframe TEXT,
 
-            hour INTEGER,
-            day_of_week INTEGER,
-            session TEXT,
+            direction TEXT,
 
-            ema20 REAL,
-            ema50 REAL,
+            entry_time TEXT,
 
-            rsi REAL,
-            atr REAL,
+            exit_time TEXT,
 
-            macd REAL,
-            signal REAL,
-            histogram REAL,
+            entry_price REAL,
 
-            FOREIGN KEY(candle_id)
-            REFERENCES candles(id)
+            exit_price REAL,
 
-        );
-    `);
+            stop_loss REAL,
 
-    console.log("Market Features table ready.");
+            take_profit REAL,
+
+            profit REAL,
+
+            balance_after_trade REAL,
+
+            exit_reason TEXT
+
+        )
+    `, (err)=>{
+
+        if(err)
+            console.error(err.message);
+        else
+            console.log("Trade Journal Ready.");
+
+    });
 
 });
 
